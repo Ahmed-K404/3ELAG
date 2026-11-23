@@ -16,14 +16,11 @@
     .sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.25rem; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: 1200px; margin: 0 auto; }
     @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-    .phone {
-      background: #000; border: 8px solid #111; border-radius: 32px;
-      height: 620px; display: flex; flex-direction: column; overflow: hidden;
-    }
+    .phone { background: #000; border: 8px solid #111; border-radius: 32px; height: 620px; display: flex; flex-direction: column; overflow: hidden; }
     .phone-head { padding: 0.9rem 1rem; color: #fff; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; }
     .wa .phone-head { background: var(--wa-dark); }
     .tg .phone-head { background: var(--tg); }
-    .avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); display: grid; place-items: center; font-size: 0.9rem; }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); display: grid; place-items: center; }
     .screen { flex: 1; overflow-y: auto; padding: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; background: #0b141a; }
     .tg .screen { background: #17212b; }
     .bubble { max-width: 85%; padding: 0.55rem 0.8rem; border-radius: 10px; font-size: 0.9rem; line-height: 1.45; white-space: pre-wrap; }
@@ -31,7 +28,7 @@
     .out { align-self: flex-end; background: #005c4b; color: #e9edef; }
     .tg .in { background: #182533; }
     .tg .out { background: #2b5278; }
-    .bubble .time { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; text-align: left; }
+    .bubble .time { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; }
     .kb { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
     .kb button { flex: 1; font-size: 0.8rem; padding: 0.4rem; border: none; border-radius: 6px; cursor: pointer; color: #fff; }
     .kb .approve { background: var(--ok); }
@@ -41,16 +38,9 @@
     .composer input { flex: 1; background: #2a3942; border: none; border-radius: 18px; padding: 0.55rem 0.9rem; color: #fff; outline: none; }
     .composer button { background: var(--wa); border: none; color: #fff; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; }
     .composer button:disabled { opacity: 0.4; }
-    .sendbox { padding: 0.6rem; background: #17212b; display: flex; gap: 0.4rem; }
-    .sendbox input { flex: 1; background: #242f3d; border: none; border-radius: 8px; padding: 0.5rem; color: #fff; outline: none; }
-    .sendbox button { background: var(--tg); border: none; color: #fff; border-radius: 8px; padding: 0 0.8rem; cursor: pointer; }
     .panel { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; }
     .panel h2 { font-size: 1rem; margin-bottom: 0.6rem; }
-    .log {
-      background: #020617; border: 1px solid var(--border); border-radius: 10px;
-      height: 240px; overflow-y: auto; padding: 0.6rem; font-family: ui-monospace, Consolas, monospace;
-      font-size: 0.78rem; line-height: 1.5;
-    }
+    .log { background: #020617; border: 1px solid var(--border); border-radius: 10px; height: 240px; overflow-y: auto; padding: 0.6rem; font-family: ui-monospace, Consolas, monospace; font-size: 0.78rem; line-height: 1.5; }
     .log .ts { color: var(--muted); }
     .log .node { color: #7dd3fc; }
     .log .ok { color: var(--ok); }
@@ -71,48 +61,41 @@
     .pill.reserved { background: rgba(16,185,129,0.15); color: var(--ok); }
     .pill.pending_pharmacist { background: rgba(245,158,11,0.15); color: var(--warn); }
     .pill.rejected { background: rgba(239,68,68,0.15); color: var(--bad); }
-    .controls { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+    .controls { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
     .controls button { background: #0b1120; border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
     .controls button:hover { border-color: var(--accent); }
+    .mode { font-size: 0.75rem; color: var(--muted); margin-right: auto; align-self: center; }
   </style>
 </head>
 <body>
   <h1>Dawaa Pharmacy — Live Demo</h1>
-  <p class="sub">واتساب ← → n8n ← → تيليجرام للصيدلي، مع لوج التنفيذ وCRM الحجوزات والمخزون</p>
+  <p class="sub">واتساب ← n8n → تيليجرام للصيدلي، مع لوج التنفيذ وCRM من الشيت</p>
 
   <div class="grid">
-    <!-- WhatsApp -->
     <div class="phone wa">
       <div class="phone-head"><div class="avatar">💊</div><div>Dawaa Pharmacy<div style="font-size:0.7rem;opacity:0.7;font-weight:400">WhatsApp</div></div></div>
       <div id="waScreen" class="screen"></div>
       <div class="composer">
-        <input id="waInput" placeholder="اكتب رسالة… مثال: Panadol 500 mg" />
+        <input id="waInput" placeholder="اكتب رسالة… مثال: Panadol" />
         <button id="waSend" title="إرسال">➤</button>
       </div>
     </div>
 
-    <!-- Telegram -->
     <div class="phone tg">
       <div class="phone-head"><div class="avatar">🩺</div><div>الصيدلي<div style="font-size:0.7rem;opacity:0.7;font-weight:400">Telegram · Dawaa Bot</div></div></div>
       <div id="tgScreen" class="screen"></div>
-      <div class="sendbox">
-        <input id="tgInput" placeholder="رسالة يدوية للعميل (اختياري)" disabled />
-        <button disabled>—</button>
-      </div>
     </div>
 
-    <!-- Log -->
     <div class="panel wide">
       <h2>لوج التنفيذ (n8n)</h2>
       <div class="controls">
-        <button id="modeBtn">الوضع: ديمو محاكي</button>
+        <span id="modeLabel" class="mode"></span>
         <button id="clearBtn">مسح اللوج</button>
-        <button id="resetBtn">إعادة ضبط البيانات</button>
+        <button id="refreshBtn">تحديث CRM من الشيت</button>
       </div>
-      <div id="log" class="log" style="margin-top:0.6rem"></div>
+      <div id="log" class="log"></div>
     </div>
 
-    <!-- CRM -->
     <div class="panel wide">
       <h2>CRM — الحجوزات والمخزون</h2>
       <div class="stats">
@@ -124,7 +107,6 @@
       <div class="tabs">
         <button class="active" data-tab="res">Reservations</button>
         <button data-tab="cat">Catalog (المخزون)</button>
-        <button data-tab="cust">العملاء</button>
       </div>
       <div id="tableArea"></div>
     </div>
@@ -132,16 +114,19 @@
 
   <script>
     // ============ الإعدادات ============
-    // لو فاضية: الصفحة تشتغل كديمو محاكي بالكامل.
-    // لو اتملت برابط webhook (HTTPS) لورك فلو الواتساب: الرسالة بتتبعت للـ n8n.
     const CONFIG = {
-      waWebhookUrl: "",            // مثال: "https://your-domain.com/webhook/whatsapp-demo"
-      pharmacistChatId: "1413247376"
+      // Webhook ورك فلو الواتساب (Production URL، مش Test)
+      waWebhookUrl: "https://fax-snide-semisweet.ngrok-free.dev/webhook/whatsapp-demo",
+      demoPhone: "201019361805",
+      demoName: "Ahmed_K",
+      // Publish to web > CSV لكل تاب. فاضي = الصفحة تشتغل بالمحاكاة المحلية
+      reservationsCsv: "",
+      catalogCsv: ""
     };
 
-    // ============ البيانات (ديمو) ============
+    // ============ بيانات محلية (fallback لو الشيت مش متوصل) ============
     const CATALOG_INIT = [
-      { sku: "P001", name: "Panadol", price: 45, stock: 32, controlled: "no" },
+      { sku: "P001", name: "Panadol", price: 45, stock: 31, controlled: "no" },
       { sku: "P002", name: "Abimol", price: 25, stock: 60, controlled: "no" },
       { sku: "P003", name: "Brufen", price: 62, stock: 8, controlled: "no" },
       { sku: "P004", name: "Augmentin", price: 185, stock: 15, controlled: "no" },
@@ -153,30 +138,24 @@
       { sku: "P010", name: "Antinal", price: 30, stock: 50, controlled: "no" }
     ];
 
-    let catalog, reservations, customers, orderSeq, waHistory, tgHistory;
-    function resetData() {
-      catalog = CATALOG_INIT.map(c => ({ ...c }));
-      reservations = [];
-      customers = [];
-      orderSeq = 1;
-      waHistory = [];
-      tgHistory = [];
-    }
-    resetData();
+    let catalog = CATALOG_INIT.map(c => ({ ...c }));
+    let reservations = [];
+    let currentTab = "res";
 
-    // ============ عناصر الواجهة ============
+    // ============ عناصر ============
     const waScreen = document.getElementById("waScreen");
     const tgScreen = document.getElementById("tgScreen");
     const waInput = document.getElementById("waInput");
     const waSend = document.getElementById("waSend");
     const logEl = document.getElementById("log");
     const tableArea = document.getElementById("tableArea");
-    let currentTab = "res";
+    const modeLabel = document.getElementById("modeLabel");
 
     // ============ مساعدات ============
     const now = () => new Date().toLocaleTimeString("ar-EG");
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    const WELCOME = "أهلاً بك في الصيدلية 👋\nمن فضلك اكتب اسم الدواء المطلوب بالضبط كما هو مكتوب على العلبة، أو أرسل صورة الروشتة.";
 
     function log(node, msg, cls = "") {
       const line = document.createElement("div");
@@ -185,165 +164,50 @@
       logEl.scrollTop = logEl.scrollHeight;
     }
 
-    function bubble(screen, text, dir, extra = "") {
+    function bubble(screen, text, dir, html = false) {
       const div = document.createElement("div");
       div.className = `bubble ${dir}`;
-      div.innerHTML = `${esc(text)}${extra}<span class="time">${now()}</span>`;
+      const body = html ? text : esc(text).replace(/\n/g, "<br>");
+      div.innerHTML = `${body}<span class="time">${now()}</span>`;
       screen.appendChild(div);
       screen.scrollTop = screen.scrollHeight;
       return div;
     }
 
-    // ============ تحليل الرسالة (محاكاة للتطبيع والـ AI) ============
-    function parseMedicines(text) {
-      const t = text.trim();
-      if (!t) return [];
-      if (/^(هاي|hi|hello|اهلا|أهلا|سلام|مرحبا|hey)$/i.test(t)) return [];
-      const name = t.replace(/\d+\s*(mg|g|ml)?/gi, "").replace(/\s+/g, " ").trim();
-      const qtyMatch = t.match(/(?:x|×)?\s*(\d+)\s*$/i);
-      return [{ name, qty: qtyMatch && !/mg|g|ml/i.test(t.slice(-4)) ? Number(qtyMatch[1]) : 1 }];
+    // ============ CSV ============
+    function parseCsv(text) {
+      const lines = text.trim().split(/\r?\n/);
+      const head = lines[0].split(",").map(h => h.trim());
+      return lines.slice(1).map(l => {
+        const cells = l.split(",");
+        return Object.fromEntries(head.map((h, i) => [h, (cells[i] ?? "").trim()]));
+      });
     }
 
-    function matchExact(name) {
-      const n = name.trim().toLowerCase();
-      return catalog.find(c => c.name.toLowerCase() === n) || null;
+    async function loadCRM(silent = false) {
+      if (!CONFIG.reservationsCsv || !CONFIG.catalogCsv) {
+        if (!silent) log("CRM", "لم يتم ضبط روابط CSV، بعرض البيانات المحلية", "warn");
+        renderAll();
+        return;
+      }
+      try {
+        const [resText, catText] = await Promise.all([
+          fetch(CONFIG.reservationsCsv).then(r => r.text()),
+          fetch(CONFIG.catalogCsv).then(r => r.text())
+        ]);
+        reservations = parseCsv(resText).map(r => ({ ...r, qty: Number(r.qty) || 0, total_egp: Number(r.total_egp) || 0 }));
+        catalog = parseCsv(catText).map(c => ({
+          sku: c.sku, name: c.name, price: Number(c.price_egp) || 0,
+          stock: Number(c.stock) || 0, controlled: c.controlled
+        }));
+        if (!silent) log("CRM", `تم تحميل ${reservations.length} صف حجز و${catalog.length} صنف من الشيت`, "ok");
+      } catch (err) {
+        log("CRM", "فشل تحميل الشيت: " + err.message, "bad");
+      }
+      renderAll();
     }
 
     // ============ مسار الواتساب ============
-    async function handleWhatsApp(text) {
-      const phone = "201019361805";
-      log("WhatsApp Trigger", `رسالة جديدة من ${phone}`, "ok");
-      await sleep(250);
-      log("Normalize Message", `type=text, text="${text}"`);
-      await sleep(250);
-      log("Is Photo?", "false → Prepare Text Read");
-      await sleep(250);
-      log("AI Read Request", "Gemini يستخرج الأدوية…");
-      await sleep(400);
-
-      const meds = parseMedicines(text);
-      if (meds.length === 0) {
-        log("Route Request", "route = nothing", "warn");
-        await sleep(200);
-        log("Nothing Found Reply", "أرسلت رسالة الترحيب للعميل", "ok");
-        bubble(waScreen, "أهلاً بك في الصيدلية 👋\nمن فضلك اكتب اسم الدواء المطلوب بالضبط كما هو مكتوب على العلبة، أو أرسل صورة الروشتة.", "in");
-        return;
-      }
-
-      log("Read Catalog", `${catalog.length} صنف`);
-      await sleep(250);
-      const lines = meds.map(m => {
-        const row = matchExact(m.name);
-        return { requested: m.name, qty: m.qty, exact: !!row, sku: row?.sku || "", medicine: row?.name || m.name,
-                 price: row?.price || 0, stock: row?.stock || 0, controlled: row?.controlled === "yes" };
-      });
-      log("Match Catalog", lines.map(l => `${l.requested} → ${l.exact ? "exact " + l.sku : "NOT FOUND"}`).join(" | "));
-      await sleep(250);
-
-      const needsPharm = lines.some(l => l.controlled || !l.exact) || lines.some(l => l.stock < l.qty);
-      const route = needsPharm ? "pharmacist" : "auto";
-      log("Route Request", `route = ${route}`, needsPharm ? "warn" : "ok");
-      await sleep(250);
-
-      const orderId = "R-" + String(Date.now()).slice(-7);
-      const status = route === "auto" ? "reserved" : "pending_pharmacist";
-      lines.forEach((l, i) => reservations.push({
-        res_id: `${orderId}-${i + 1}`, created_at: new Date().toLocaleString("ar-EG"),
-        customer_id: phone, sku: l.sku, name: l.medicine, qty: l.qty,
-        total_egp: l.price * l.qty, status, note: l.exact ? "" : "تحتاج تأكيد الصيدلي"
-      }));
-      if (!customers.find(c => c.phone === phone)) customers.push({ phone, orders: 0 });
-      customers.find(c => c.phone === phone).orders++;
-      log("Save Reservation Lines", `${lines.length} صف محفوظ، orderId=${orderId}`, "ok");
-      renderAll();
-      await sleep(250);
-
-      if (route === "auto") {
-        log("Take Stock Now", "خصم المخزون");
-        lines.filter(l => l.exact).forEach(l => {
-          const c = catalog.find(x => x.sku === l.sku);
-          if (c) c.stock = Math.max(0, c.stock - l.qty);
-        });
-        renderAll();
-        log("Confirm Reservation", "أرسلت تأكيد الحجز للعميل", "ok");
-        bubble(waScreen, "تم تأكيد حجز الأدوية بنجاح، وسيتم تجهيزها لك قريباً.", "in");
-      } else {
-        log("Format Pharmacist Message", "تنسيق رسالة الصيدلي");
-        await sleep(200);
-        const itemsTxt = lines.map(l => {
-          const icon = l.controlled ? "🔒" : !l.exact ? "⚠️" : l.stock < l.qty ? "❌" : "✅";
-          return `• ${l.qty} × ${l.medicine} ${icon}`;
-        }).join("\n");
-        const text = `💊 طلب صرف يحتاج مراجعة صيدلي\n🧾 رقم الطلب: ${orderId}\n📱 العميل: ${phone}\n━━━━━━━━━━━━\n${itemsTxt}`;
-        log("Ask Pharmacist", "أرسلت الطلب للصيدلي على تيليجرام مع الزراير", "warn");
-        sendToPharmacist(text, orderId, lines);
-        await sleep(200);
-        log("Tell Customer: Pharmacist Checking", "أرسلت رسالة 'قيد المراجعة'", "ok");
-        bubble(waScreen, "طلبك قيد المراجعة من قبل الصيدلي، وسنتواصل معك قريباً.", "in");
-      }
-      renderAll();
-    }
-
-    // ============ الصيدلي (تيليجرام) ============
-    function sendToPharmacist(text, orderId, lines) {
-      const div = document.createElement("div");
-      div.className = "bubble in";
-      div.innerHTML = `${esc(text).replace(/\n/g, "<br>")}
-        <div class="kb">
-          <button class="approve" data-act="approve" data-order="${orderId}">✅ Approve</button>
-          <button class="reject" data-act="reject" data-order="${orderId}">❌ Reject</button>
-        </div>
-        <span class="time">${now()}</span>`;
-      tgScreen.appendChild(div);
-      tgScreen.scrollTop = tgScreen.scrollHeight;
-      tgHistory.push({ orderId, lines });
-      div.querySelectorAll("button").forEach(btn => {
-        btn.addEventListener("click", () => handlePharmacist(btn.dataset.act, btn.dataset.order, div));
-      });
-    }
-
-    async function handlePharmacist(action, orderId, msgDiv) {
-      msgDiv.querySelectorAll("button").forEach(b => b.disabled = true);
-      log("Telegram Trigger", `callback_query: ${action}|${orderId}`, "ok");
-      await sleep(200);
-      log("Parse Decision", `action=${action}, orderId=${orderId}`);
-      await sleep(200);
-      const pending = reservations.filter(r => r.res_id.startsWith(orderId + "-") && r.status === "pending_pharmacist");
-      if (pending.length === 0) {
-        log("Apply Decision", "state = already", "warn");
-        bubble(tgScreen, `ℹ️ الطلب ${orderId} اتعالج قبل كده.`, "out");
-        return;
-      }
-      const unresolved = pending.filter(r => !r.sku);
-      if (action === "approve" && unresolved.length) {
-        log("Apply Decision", `state = blocked (${unresolved.map(r => r.name).join("، ")})`, "bad");
-        bubble(tgScreen, `⚠️ ما قدرتش أوافق على الطلب ${orderId}، لأن الدواء (${unresolved.map(r => r.name).join("، ")}) مش متطابق مع الشيت.`, "out");
-        return;
-      }
-      log("Apply Decision", `state = ok, action=${action}`, "ok");
-      await sleep(200);
-      const status = action === "approve" ? "reserved" : "rejected";
-      pending.forEach(r => r.status = status);
-      log("Update Lines", `${pending.length} صف → ${status}`, "ok");
-      if (action === "approve") {
-        const need = new Map();
-        pending.forEach(r => need.set(r.sku, (need.get(r.sku) || 0) + r.qty));
-        need.forEach((qty, sku) => {
-          const c = catalog.find(x => x.sku === sku);
-          if (c) c.stock = Math.max(0, c.stock - qty);
-        });
-        log("Take Stock (Approved)", "تم خصم المخزون", "ok");
-        bubble(waScreen, "تم تأكيد حجز الأدوية بنجاح، وسيتم تجهيزها لك قريباً.", "in");
-        log("Tell Customer: Approved", "أرسلت تأكيد الحجز للعميل", "ok");
-      } else {
-        log("Send message", "أرسلت رفض للعميل", "warn");
-        bubble(waScreen, "للأسف الأدوية المطلوبة غير متاحة حالياً، يرجى التواصل مع الصيدلية.", "in");
-      }
-      bubble(tgScreen, `${action === "approve" ? "✅ تمت الموافقة" : "❌ تم الرفض"} على الطلب ${orderId}`, "out");
-      renderAll();
-    }
-
-    // ============ إرسال من واتساب ============
     async function sendFromWhatsApp() {
       const text = waInput.value.trim();
       if (!text) return;
@@ -351,22 +215,22 @@
       waSend.disabled = true;
       bubble(waScreen, text, "out");
       try {
-        if (CONFIG.waWebhookUrl) {
-          log("HTTP", `POST ${CONFIG.waWebhookUrl}`);
-          const res = await fetch(CONFIG.waWebhookUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone: "201019361805", text, type: "text" })
-          });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const data = await res.json().catch(() => ({}));
-          log("n8n", "تم استلام الرد من الورك فلو", "ok");
-          if (data.reply) bubble(waScreen, data.reply, "in");
-        } else {
-          await handleWhatsApp(text);
-        }
+        log("WhatsApp", `رسالة من ${CONFIG.demoPhone}: "${text}"`);
+        log("HTTP", `POST ${CONFIG.waWebhookUrl}`);
+        const res = await fetch(CONFIG.waWebhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+          body: JSON.stringify({ phone: CONFIG.demoPhone, name: CONFIG.demoName, text, type: "text" })
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        log("n8n", "الورك فلو استلم الرسالة وبيشتغل. الرد الحقيقي بيوصل على واتساب الفعلي", "ok");
+        log("n8n", "هنستنى ثانيتين وبعدين نحدّث CRM", "");
+        await sleep(2000);
+        await loadCRM(true);
+        log("CRM", "تم تحديث الجداول من الشيت", "ok");
       } catch (err) {
-        log("Error", err.message, "bad");
+        log("Error", err.message + " — تأكد إن الورك فلو Active وإن ngrok شغال", "bad");
+        bubble(waScreen, "⚠️ تعذر الوصول للورك فلو", "in");
       } finally {
         waSend.disabled = false;
       }
@@ -378,24 +242,33 @@
     // ============ الجداول ============
     function renderTables() {
       if (currentTab === "res") {
-        tableArea.innerHTML = `<table><thead><tr><th>res_id</th><th>العميل</th><th>الدواء</th><th>الكمية</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody>
-          ${reservations.map(r => `<tr><td>${esc(r.res_id)}</td><td>${esc(r.customer_id)}</td><td>${esc(r.name)}</td><td>${r.qty}</td><td>${r.total_egp}</td><td><span class="pill ${esc(r.status)}">${esc(r.status)}</span></td></tr>`).join("") || `<tr><td colspan="6">لا توجد حجوزات بعد</td></tr>`}
-        </tbody></table>`;
-      } else if (currentTab === "cat") {
-        tableArea.innerHTML = `<table><thead><tr><th>sku</th><th>الدواء</th><th>السعر</th><th>المخزون</th><th>controlled</th></tr></thead><tbody>
-          ${catalog.map(c => `<tr><td>${esc(c.sku)}</td><td>${esc(c.name)}</td><td>${c.price}</td><td>${c.stock}</td><td>${esc(c.controlled)}</td></tr>`).join("")}
-        </tbody></table>`;
+        const rows = reservations.map(r => `
+          <tr>
+            <td>${esc(r.res_id)}</td>
+            <td>${esc(r.customer_id)}</td>
+            <td>${esc(r.name)}</td>
+            <td>${esc(r.sku)}</td>
+            <td>${r.qty}</td>
+            <td>${r.total_egp}</td>
+            <td><span class="pill ${esc(r.status)}">${esc(r.status)}</span></td>
+          </tr>`).join("");
+        tableArea.innerHTML = `<table><thead><tr>
+          <th>res_id</th><th>العميل</th><th>الدواء</th><th>sku</th><th>الكمية</th><th>الإجمالي</th><th>الحالة</th>
+          </tr></thead><tbody>${rows || `<tr><td colspan="7">لا توجد حجوزات بعد</td></tr>`}</tbody></table>`;
       } else {
-        tableArea.innerHTML = `<table><thead><tr><th>الرقم</th><th>عدد الطلبات</th></tr></thead><tbody>
-          ${customers.map(c => `<tr><td>${esc(c.phone)}</td><td>${c.orders}</td></tr>`).join("") || `<tr><td colspan="2">لا يوجد عملاء بعد</td></tr>`}
-        </tbody></table>`;
+        const rows = catalog.map(c => `
+          <tr><td>${esc(c.sku)}</td><td>${esc(c.name)}</td><td>${c.price}</td><td>${c.stock}</td><td>${esc(c.controlled)}</td></tr>`).join("");
+        tableArea.innerHTML = `<table><thead><tr>
+          <th>sku</th><th>الدواء</th><th>السعر</th><th>المخزون</th><th>controlled</th>
+          </tr></thead><tbody>${rows}</tbody></table>`;
       }
     }
 
     function renderStats() {
-      document.getElementById("stReserved").textContent = reservations.filter(r => r.status === "reserved").length;
-      document.getElementById("stPending").textContent = reservations.filter(r => r.status === "pending_pharmacist").length;
-      document.getElementById("stRejected").textContent = reservations.filter(r => r.status === "rejected").length;
+      const cnt = s => reservations.filter(r => r.status === s).length;
+      document.getElementById("stReserved").textContent = cnt("reserved");
+      document.getElementById("stPending").textContent = cnt("pending_pharmacist");
+      document.getElementById("stRejected").textContent = cnt("rejected");
       document.getElementById("stStock").textContent = catalog.reduce((s, c) => s + c.stock, 0);
     }
 
@@ -411,18 +284,30 @@
     });
 
     document.getElementById("clearBtn").onclick = () => logEl.innerHTML = "";
-    document.getElementById("resetBtn").onclick = () => {
-      resetData();
-      waScreen.innerHTML = ""; tgScreen.innerHTML = ""; logEl.innerHTML = "";
-      bubble(waScreen, "أهلاً بك في الصيدلية 👋\nمن فضلك اكتب اسم الدواء المطلوب بالضبط كما هو مكتوب على العلبة، أو أرسل صورة الروشتة.", "in");
-      renderAll();
-    };
-    document.getElementById("modeBtn").onclick = e => {
-      e.target.textContent = CONFIG.waWebhookUrl ? "الوضع: ربط حقيقي" : "الوضع: ديمو محاكي (عدّل CONFIG.waWebhookUrl للربط)";
-    };
+    document.getElementById("refreshBtn").onclick = () => loadCRM(false);
+
+    // ============ الصيدلي (زراير تيليجرام) ============
+    // ملاحظة: الزراير هنا للعرض. القرار الحقيقي بيتم من تيليجرام الفعلي
+    // وبيتعالج في ورك فلو الـ Callback.
+    function showPharmacistMessage(text, orderId) {
+      const div = document.createElement("div");
+      div.className = "bubble in";
+      div.innerHTML = `${esc(text).replace(/\n/g, "<br>")}
+        <div class="kb">
+          <button class="approve" disabled>✅ Approve</button>
+          <button class="reject" disabled>❌ Reject</button>
+        </div>
+        <span class="time">${now()}</span>`;
+      tgScreen.appendChild(div);
+      tgScreen.scrollTop = tgScreen.scrollHeight;
+    }
 
     // ============ بداية ============
-    bubble(waScreen, "أهلاً بك في الصيدلية 👋\nمن فضلك اكتب اسم الدواء المطلوب بالضبط كما هو مكتوب على العلبة، أو أرسل صورة الروشتة.", "in");
+    modeLabel.textContent = CONFIG.reservationsCsv && CONFIG.catalogCsv
+      ? "الوضع: متصل بالشيت"
+      : "الوضع: CSV غير مضبوط (بيانات محلية)";
+    bubble(waScreen, WELCOME, "in");
+    log("System", "الصفحة جاهزة. اكتب رسالة في واتساب وابعتها", "ok");
     renderAll();
   </script>
 </body>
