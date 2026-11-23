@@ -222,7 +222,15 @@
       mode: "cors",
       headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
       body: JSON.stringify({ phone: CONFIG.demoPhone, name: CONFIG.demoName, text, type: "text" })
-    });
+    });const res = await fetch(CONFIG.waWebhookUrl, {
+  method: "POST",
+  mode: "cors",
+  headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+  body: JSON.stringify({ phone: CONFIG.demoPhone, name: CONFIG.demoName, text, type: "text" })
+});
+const body = await res.text();
+console.log("Webhook status:", res.status, body);
+log("HTTP", `الرد: ${res.status} — ${body.slice(0, 200)}`, res.ok ? "ok" : "bad");
     log("HTTP", `الرد: ${res.status} ${res.statusText}`, res.ok ? "ok" : "bad");
     if (!res.ok) throw new Error("HTTP " + res.status);
     log("n8n", "الورك فلو استلم الرسالة. الرد الحقيقي بيوصل على واتساب الفعلي", "ok");
