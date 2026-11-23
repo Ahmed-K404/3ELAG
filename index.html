@@ -209,32 +209,32 @@
 
     // ============ مسار الواتساب ============
     async function sendFromWhatsApp() {
-      const text = waInput.value.trim();
-      if (!text) return;
-      waInput.value = "";
-      waSend.disabled = true;
-      bubble(waScreen, text, "out");
-      try {
-        log("WhatsApp", `رسالة من ${CONFIG.demoPhone}: "${text}"`);
-        log("HTTP", `POST ${CONFIG.waWebhookUrl}`);
-        const res = await fetch(CONFIG.waWebhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
-          body: JSON.stringify({ phone: CONFIG.demoPhone, name: CONFIG.demoName, text, type: "text" })
-        });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        log("n8n", "الورك فلو استلم الرسالة وبيشتغل. الرد الحقيقي بيوصل على واتساب الفعلي", "ok");
-        log("n8n", "هنستنى ثانيتين وبعدين نحدّث CRM", "");
-        await sleep(2000);
-        await loadCRM(true);
-        log("CRM", "تم تحديث الجداول من الشيت", "ok");
-      } catch (err) {
-        log("Error", err.message + " — تأكد إن الورك فلو Active وإن ngrok شغال", "bad");
-        bubble(waScreen, "⚠️ تعذر الوصول للورك فلو", "in");
-      } finally {
-        waSend.disabled = false;
-      }
-    }
+  const text = waInput.value.trim();
+  if (!text) return;
+  waInput.value = "";
+  waSend.disabled = true;
+  bubble(waScreen, text, "out");
+  log("WhatsApp", `رسالة من ${CONFIG.demoPhone}: "${text}"`);
+  try {
+    log("HTTP", `POST ${CONFIG.waWebhookUrl}`);
+    const res = await fetch(CONFIG.waWebhookUrl, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json", "ngrok-skip-browser-warning": "true" },
+      body: JSON.stringify({ phone: CONFIG.demoPhone, name: CONFIG.demoName, text, type: "text" })
+    });
+    log("HTTP", `الرد: ${res.status} ${res.statusText}`, res.ok ? "ok" : "bad");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    log("n8n", "الورك فلو استلم الرسالة. الرد الحقيقي بيوصل على واتساب الفعلي", "ok");
+    await sleep(2000);
+    await loadCRM(true);
+  } catch (err) {
+    console.error("Webhook error:", err);
+    log("Error", `${err.message} — افتح Console لمزيد من التفاصيل`, "bad");
+  } finally {
+    waSend.disabled = false;
+  }
+}
 
     waSend.addEventListener("click", sendFromWhatsApp);
     waInput.addEventListener("keydown", e => { if (e.key === "Enter") sendFromWhatsApp(); });
